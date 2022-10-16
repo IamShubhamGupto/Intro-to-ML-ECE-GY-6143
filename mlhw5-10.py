@@ -1,6 +1,10 @@
 from numpy import log as ln
 from math import e
 import numpy as np
+def fun(x,neg=False):
+    if neg:
+        return ((e**-x)/(1+e**-x))
+    return (1/(1+e**-x))
 x = np.array([[1,2,2],
     [1,-3,2],
     [1,-1,0],
