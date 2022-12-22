@@ -31,17 +31,16 @@ def pool2d(A, kernel_size, stride, padding=0, pool_mode='max'):
         return A_w.max(axis=(2, 3))
     elif pool_mode == 'avg':
         return A_w.mean(axis=(2, 3))
+    elif pool_mode == 'median':
+        return np.median(A_w, axis=(2, 3))
+    elif pool_mode == 'min':
+        return A_w.min(axis=(2, 3))
 # should be ideally 4 shape
 # 1st should be batch size
 input_tensor = np.array([
-    [-4, 9, 7, -7, 8, 6, 5, -4, 0],
-    [1, -1, -5, 6, 0, -1, 4, -9, 0],
-    [-7, -9, -4, -10, -8, -8, -1, -4, -1],
-    [0, -7, -1, 3, -8, -8, 4, -9, 4],
-    [7, 0, 8, 1, 1, 8, -6, -10, -9],
-    [7, -3, 5, -2, 4, 0, -9, -7, -3],
-    [7, -7, -1, -10, -6, 9, 7, -10, -6],
-    [4, 4, -6, 6, 0, 6, -7, 7, -8],
-    [-4, 4, 8, 4, -6, -1,	-7, -10, -9]
+    [-10,-4,-6,4],
+    [3, -7, 4,9],
+    [7, -8, 3, 5],
+    [-2, 3, -8, 4]
 ])
-print(pool2d(input_tensor, kernel_size=3, stride=3, padding=0, pool_mode='max'))
+print(pool2d(input_tensor, kernel_size=2, stride=1, padding=0, pool_mode='min'))
